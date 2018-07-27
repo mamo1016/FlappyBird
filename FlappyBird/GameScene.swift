@@ -286,15 +286,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             item.addChild(item1)
             
             // スコアアップ用のノード
-//            let scoreItemNode = SKNode()
-//            scoreItemNode.position = CGPoint(x: item1.size.width + self.bird.size.width / 2, y: self.frame.height / 2.0)
-//            scoreItemNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: item1.size.width, height: self.frame.size.height))
-//            scoreItemNode.physicsBody?.isDynamic = false
-//            scoreItemNode.physicsBody?.categoryBitMask = self.scoreCategory
-//            scoreItemNode.physicsBody?.contactTestBitMask = self.birdCategory
-            
-//            item.addChild(scoreItemNode)
-
+            item.physicsBody?.contactTestBitMask = self.birdCategory
             
             item.run(itemAnimation)
             
@@ -361,7 +353,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     // SKPhysicsContactDelegateのメソッド。衝突したときに呼ばれる
     func didBegin(_ contact: SKPhysicsContact) {
-        print(contact.bodyB.categoryBitMask)
+//        print("\(contact.bodyA.categoryBitMask),\(contact.bodyA.categoryBitMask & scoreCategory)")
         // ゲームオーバーのときは何もしない
         if scrollNode.speed <= 0 {
             return
